@@ -72,7 +72,7 @@ logitreg <- function(design, response, method = "BFGS", ...){
                                gr = neg_loglik_deriv, response = response, 
                                design = design, method = method, ...)
   
-  if(optimization_result$convergence == 0){
+  if(optimization_result$convergence != 0){
     warning("Optimizer did not converge, results can be incorrect")
   }
   
