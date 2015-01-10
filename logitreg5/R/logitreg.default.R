@@ -7,13 +7,14 @@
 #'column should be constant 1 as intercept
 #'@param response numeric vector. Response vector of 1s and 0s, should have the 
 #'same length as the number of rows in design.
-#'@param method character. optimization method, one of "Nelder-Mead", "BFGS", "CG", "L-BFGS-B", "SANN",
-#' "Brent".
+#'@param method character. optimization method, one of "Nelder-Mead", "BFGS", 
+#' "CG", "L-BFGS-B", "SANN", "Brent".
 #'@param ... Further parameters passed to \code{\link[stats]{optim}}.  
 #'@author Janek Thomas, Philipp Roesch
 #'@return A list with estimated coefficients, fitted propabilities and 
 #'original data
 #'@export
+#'@seealso \code{\link{logitreg.formula}} for formula and  \code{\link{logitreg.list}} for lists
 logitreg.default <- function(design, response, method = "BFGS", ...){
   
   method <- match.arg(method, c("Nelder-Mead", "BFGS", "CG", "L-BFGS-B",
@@ -72,7 +73,7 @@ logitreg.default <- function(design, response, method = "BFGS", ...){
                                gr = neg_loglik_deriv, response = response, 
                                design = design, method = method, ...)
   
-  if(optimization_result$convergence == 0){
+  if(optimization_result$convergence != 0){
     warning("Optimizer did not converge, results can be incorrect")
   }
   
@@ -82,7 +83,7 @@ logitreg.default <- function(design, response, method = "BFGS", ...){
   
   result <- list(coefficients = coefficients, fitted = fitted, data = data)
   
-  class(result) <- c("logitreg", class(result))
+  class(result) <- c("logitreg")
   
   result
 }

@@ -2,7 +2,7 @@ Package: logitreg5
 Title: Package for logistic regression
 Version: 0.1
 Authors@R: "Janek Thomas <janek.tho@gmail.com> [aut, cre],
-            Philipp Rösch <philipp.stats@gmail.com [aut, cre]>"
+            Philipp Roesch <philipp.stats@gmail.com> [aut, cre]"
 Description: Fit a logistic regression model for given datasets.
 Depends:
     R (>= 3.1.2)
