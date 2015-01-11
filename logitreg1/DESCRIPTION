@@ -2,7 +2,7 @@ Package: logitreg1
 Title: Logistic Regression
 Version: 0.1
 Authors@R: "Janek Thomas <janek.tho@gmail.com> [aut, cre],
-          Philipp Roesch [aut, cre]"
+    Philipp Roesch [aut, cre]"
 Description: calculate the (negative) likelihood for logistic regression.
 Depends:
     R (>= 3.1.2)

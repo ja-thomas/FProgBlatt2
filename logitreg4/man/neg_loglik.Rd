@@ -19,6 +19,6 @@ Return the negative loglikelihood for a data matrix with response
 coefficients.
 }
 \author{
-Janek Thomas
+Janek Thomas, Philipp Rösch
 }
 

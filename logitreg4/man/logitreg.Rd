@@ -3,7 +3,7 @@
 \alias{logitreg}
 \title{Calculate a logistic regression}
 \usage{
-logitreg(design, response, ...)
+logitreg(design, response, method = "BFGS", ...)
 }
 \arguments{
 \item{design}{numeric matrix. Design matrix containing the observations, first
@@ -11,6 +11,9 @@ column should be constant 1 as intercept}
 
 \item{response}{numeric vector. Response vector of 1s and 0s, should have the
 same length as the number of rows in design.}
+
+\item{method}{character. optimization method, one of "Nelder-Mead", "BFGS", "CG", "L-BFGS-B", "SANN",
+"Brent".}
 
 \item{...}{Further parameters passed to \code{\link[stats]{optim}}.}
 }
@@ -21,9 +24,9 @@ original data
 \description{
 Calculate a logistic regression for given data. Uses
 \code{\link[stats]{optim}} with the Broyden-Fletcher-Goldfarb-Shanno (BFGS)
-algorithm  for parameter estimation
+algorithm as default for parameter estimation
 }
 \author{
-Janek Thomas
+Janek Thomas, Philipp Roesch
 }
 

@@ -19,6 +19,6 @@ Calculate the gradient negative loglikelihood for logistic regression.
 Used for optimization of the likelihood.
 }
 \author{
-Janek Thomas
+Janek Thomas, Philipp Rösch
 }
 

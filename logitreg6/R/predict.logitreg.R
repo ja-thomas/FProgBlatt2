@@ -9,7 +9,6 @@
 #'object to a data.frame if it is not already one.
 #'@author Janek Thomas, Philipp Roesch
 #'@return Vector of predicted probabilities.
-#'@export  
 predict.logitreg <- function(object, newdata){
   if(missing(newdata)){
     newdata <- object$data$design
