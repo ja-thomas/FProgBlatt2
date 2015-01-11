@@ -7,13 +7,12 @@
 #'@param response a vector. The resonse of the data, length must be the same as 
 #'the number of rows in the design matrix
 #'@param design numeric matrix. The data used to fit the loglikelihood
-#'@author Janek Thomas, Philipp Roesch
-neg_loglik <- function(coefficients, response, design){
-    
-  nu <- design %*% coefficients
+#'@author Janek Thomas, Philipp Rösch
+#'@encoding UTF-8
+neg_loglik <- function(coefficients, response, design) { 
   
+  nu <- design %*% coefficients
   -1 * sum(response * log(logit_link(nu)) +
              (1 - response) * log(1 - logit_link(nu)))
-  
 }
 

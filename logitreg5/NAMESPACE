@@ -3,3 +3,4 @@
 S3method(logitreg,default)
 S3method(logitreg,formula)
 S3method(logitreg,list)
+export(logitreg)
