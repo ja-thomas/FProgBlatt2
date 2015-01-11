@@ -8,7 +8,7 @@
 #'@param response numeric vector. Response vector of 1s and 0s, should have the 
 #'same length as the number of rows in design.
 #'@param ... Further parameters passed to \code{\link[stats]{optim}}. 
-#'@author Janek Thomas, Philipp Rösch
+#'@author Janek Thomas, Philipp Rösch, Steffen Fohr
 #'@return A list with estimated coefficients, fitted propabilities and 
 #'original data
 #'@encoding UTF-8

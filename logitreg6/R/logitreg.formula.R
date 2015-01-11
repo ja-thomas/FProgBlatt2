@@ -8,7 +8,7 @@
 #'@param data an optional data frame, containing the variables in the model. 
 #'If not found in data, the variables are taken from the parent environment.
 #'@param ... Further parameters passed to \code{\link[stats]{optim}}.  
-#'@author Janek Thomas, Philipp Rösch
+#'@author Janek Thomas, Philipp Rösch, Steffen Fohr
 #'@return A list with estimated coefficients, fitted propabilities and 
 #'original data
 #'@encoding UTF-8

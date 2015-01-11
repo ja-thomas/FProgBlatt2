@@ -10,9 +10,10 @@
 #'@param method character. optimization method, one of "Nelder-Mead", "BFGS", "CG", "L-BFGS-B", "SANN",
 #' "Brent".
 #'@param ... Further parameters passed to \code{\link[stats]{optim}}.  
-#'@author Janek Thomas, Philipp Roesch
+#'@author Janek Thomas, Philipp Rösch, Steffen Fohr
 #'@return A list with estimated coefficients, fitted propabilities and 
 #'original data
+#'@encoding UTF-8
 #'@export
 logitreg <- function(design, response, method = "BFGS", ...){
     

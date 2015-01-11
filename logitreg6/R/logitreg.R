@@ -8,7 +8,7 @@
 #'Alternativly an object of class "formula".
 #'@param ... Further parameters passed to other logitreg inout and 
 #'\code{\link[stats]{optim}}.  
-#'@author Janek Thomas, Philipp Rösch
+#'@author Janek Thomas, Philipp Rösch, Steffen Fohr
 #'@return A list with estimated coefficients, fitted propabilities and 
 #'original data.
 #'@encoding UTF-8

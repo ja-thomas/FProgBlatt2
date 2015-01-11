@@ -6,8 +6,9 @@
 #'@param object logitreg. An object of class logitreg.
 #'@param ... Additional parameters passed to the plot function, see 
 #'\code{\link[ROCR]{plot.performance}} for details.
-#'@author Janek Thomas, Philipp Roesch
+#'@author Janek Thomas, Philipp Rösch, Steffen Fohr
 #'@import ROCR
+#'@encoding UTF-8
 plot.logitreg <- function(object, ...){
 
   prediction_object <- prediction(object$fitted, object$data$response)

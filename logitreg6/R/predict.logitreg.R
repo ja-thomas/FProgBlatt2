@@ -7,8 +7,9 @@
 #'@param newdata data.frame. Optional, additional data to predict. Has to have 
 #'the same dimensions as the data of the logitreg object. Tries to convert the 
 #'object to a data.frame if it is not already one.
-#'@author Janek Thomas, Philipp Roesch
+#'@author Janek Thomas, Philipp Rösch, Steffen Fohr
 #'@return Vector of predicted probabilities.
+#'@encoding UTF-8
 predict.logitreg <- function(object, newdata){
   if(missing(newdata)){
     newdata <- object$data$design
