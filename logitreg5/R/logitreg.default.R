@@ -2,20 +2,21 @@
 #'
 #'Calculate a logistic regression for given data. Uses 
 #'\code{\link[stats]{optim}} with the Broyden-Fletcher-Goldfarb-Shanno (BFGS) 
-#'algorithm as default for parameter estimation 
+#'algorithm as default for parameter estimation.
 #'@param design numeric matrix. Design matrix containing the observations, first
-#'column should be constant 1 as intercept
+#'column should be constant 1 as intercept.
 #'@param response numeric vector. Response vector of 1s and 0s, should have the 
 #'same length as the number of rows in design.
 #'@param method character. optimization method, one of "Nelder-Mead", "BFGS", 
 #' "CG", "L-BFGS-B", "SANN", "Brent".
 #'@param ... Further parameters passed to \code{\link[stats]{optim}}.  
-#'@author Janek Thomas, Philipp Roesch
-#'@return A list with estimated coefficients, fitted propabilities and 
-#'original data
+#'@author Janek Thomas, Philipp Rösch
+#'@return A list with estimated coefficients, fitted propabilities, and 
+#'original data.
+#'@encoding UTF-8
 #'@export
-#'@seealso \code{\link{logitreg.formula}} for formula and  \code{\link{logitreg.list}} for lists
-logitreg.default <- function(design, response, method = "BFGS", ...){
+#'@seealso \code{\link{logitreg}} 
+logitreg.default <- function(design, response, method = "BFGS", ...) {
   
   method <- match.arg(method, c("Nelder-Mead", "BFGS", "CG", "L-BFGS-B",
                                 "SANN", "Brent"))
@@ -64,7 +65,8 @@ logitreg.default <- function(design, response, method = "BFGS", ...){
   }
   
   if(ncol(design) > nrow(design)){
-    warning("More covariables than observations (p > n), results will be unstable")
+    warning("More covariables than observations (p > n), 
+            results will be unstable")
   }
   
   initial_coefficients <- rep(0.1, times = ncol(design))
