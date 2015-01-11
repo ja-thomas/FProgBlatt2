@@ -28,5 +28,5 @@ predict.logitreg <- function(object, newdata){
     
     newdata <- model.matrix(~. , newdata)
   }
-  logit_link(newdata %*% object$coefficients)
+  logit_link(newdata %*% object$coefficients)[,1]
 }

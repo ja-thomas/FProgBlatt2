@@ -3,3 +3,6 @@
 S3method(logitreg,default)
 S3method(logitreg,formula)
 S3method(logitreg,list)
+S3method(predict,logitreg)
+export(plot.logitreg)
+import(ROCR)

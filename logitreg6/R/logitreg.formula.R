@@ -8,18 +8,18 @@
 #'@param data an optional data frame, containing the variables in the model. 
 #'If not found in data, the variables are taken from the parent environment.
 #'@param ... Further parameters passed to \code{\link[stats]{optim}}.  
-#'@author Janek Thomas, Philipp Roesch
+#'@author Janek Thomas, Philipp Rösch
 #'@return A list with estimated coefficients, fitted propabilities and 
 #'original data
+#'@encoding UTF-8
 #'@export
-#'@seealso The default method \code{\link{logitreg.default}} and  \code{\link{logitreg.list}} for lists
-
+#'@seealso \code{\link{logitreg}}
 logitreg.formula <- function(design, data = NULL, ...){
   
   # input checking
   if(grepl("- 1", toString(eval(quote(design))))){
-    stop("<design> cannot contain '- 1'. Model fitting without 
-         intercept is not implemented.")
+    stop("formula of <design> cannot contain '- 1'. Model fitting without 
+         intercept is not supported")
   }
   # end input checking
   
@@ -27,7 +27,6 @@ logitreg.formula <- function(design, data = NULL, ...){
     model_frame <- eval(bquote(model.frame(.(design))), parent.frame())
     
     model_frame_length <- length(model_frame)
-    
     for (i in seq_len(model_frame_length)){
       if(is.factor(model_frame[,i])){
         levels(model_frame[,i]) <- c(0,1)
@@ -35,13 +34,13 @@ logitreg.formula <- function(design, data = NULL, ...){
       }
     }
   
-
   }
   else{
     model_frame <- model.frame(design, data) 
   }
   
   design_matrix <- cbind(intercept=1, as.matrix(model_frame[ ,-1]))
+  
   logitreg.default(design = design_matrix,
              response = model_frame[, 1],
              ...)
