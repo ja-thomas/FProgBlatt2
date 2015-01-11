@@ -81,6 +81,12 @@ logitreg.default <- function(design, response, method = "BFGS", ...) {
   
   coefficients <- optimization_result$par
   fitted <- logit_link(design %*% coefficients)
+  
+  if(any(fitted <= .Machine$double.eps | 
+           abs(fitted - 1) <= .Machine$double.eps)){
+    warning("Fitted values of numerically 0 or 1 are calculated")
+  }
+  
   data <- list(design = design, response = response)
   
   result <- list(coefficients = coefficients, fitted = fitted, data = data)
