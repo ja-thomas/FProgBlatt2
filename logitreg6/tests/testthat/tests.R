@@ -18,4 +18,5 @@ expect_equal(predict(model_logitreg, new_data),
 
 expect_equal(fitted(model_logitreg), fitted(model_glm), tolerance = 0.0009)
 
+#test for ROC plot omitted, no way to check a plot
 
