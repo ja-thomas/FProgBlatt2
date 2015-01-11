@@ -1,0 +1,89 @@
+#'Calculate a logistic regression
+#'
+#'Calculate a logistic regression for given data. Uses 
+#'\code{\link[stats]{optim}} with the Broyden-Fletcher-Goldfarb-Shanno (BFGS) 
+#'algorithm as default for parameter estimation 
+#'@param design numeric matrix. Design matrix containing the observations, first
+#'column should be constant 1 as intercept
+#'@param response numeric vector. Response vector of 1s and 0s, should have the 
+#'same length as the number of rows in design.
+#'@param method character. optimization method, one of "Nelder-Mead", "BFGS", 
+#' "CG", "L-BFGS-B", "SANN", "Brent".
+#'@param ... Further parameters passed to \code{\link[stats]{optim}}.  
+#'@author Janek Thomas, Philipp Roesch
+#'@return A list with estimated coefficients, fitted propabilities and 
+#'original data
+#'@export
+#'@seealso \code{\link{logitreg.formula}} for formula and  \code{\link{logitreg.list}} for lists
+logitreg.default <- function(design, response, method = "BFGS", ...){
+  
+  method <- match.arg(method, c("Nelder-Mead", "BFGS", "CG", "L-BFGS-B",
+                                "SANN", "Brent"))
+  
+  if(!is.matrix(design)){
+    if(is.data.frame(design)){
+      design <- as.matrix(design)
+      warning("<design> converted from data.frame to matrix")
+    }
+    else{
+      stop("<design> is not a matrix")
+    }  
+  }
+  
+  if(!all(is.numeric(design))){
+    stop("non numeric values in <design>")
+  }
+  
+  if(!is.vector(response)){
+    stop("<response> is not a vector")
+  }
+  
+  if(!all(response %in% c(1,0))){
+    stop("<response> can only have values of 1 and 0")
+  }
+  
+  if(!length(response) == nrow(design)){
+    stop("Dimensions of <response> and <design> do not fit")
+  }
+  
+  classes <- unique(response)
+  
+  if(length(classes) == 1){
+    warning(paste("No observations for class", setdiff(c(0,1), classes), 
+                  "found!"))
+  }
+  
+  missing_value_index <- c(which(!complete.cases(design)), 
+                           which(!complete.cases(response)))
+  
+  if(length(missing_value_index) > 0){
+    warning(paste("Row(s)", paste(missing_value_index, collapse =", "), 
+                  "removed, due to missing values"))
+    design <- design[-missing_value_index,]
+    response <- response[-missing_value_index]
+  }
+  
+  if(ncol(design) > nrow(design)){
+    warning("More covariables than observations (p > n), results will be unstable")
+  }
+  
+  initial_coefficients <- rep(0.1, times = ncol(design))
+  
+  optimization_result <- optim(par = initial_coefficients, fn = neg_loglik, 
+                               gr = neg_loglik_deriv, response = response, 
+                               design = design, method = method, ...)
+  
+  if(optimization_result$convergence != 0){
+    warning("Optimizer did not converge, results can be incorrect")
+  }
+  
+  coefficients <- optimization_result$par
+  fitted <- logit_link(design %*% coefficients)
+  data <- list(design = design, response = response)
+  
+  result <- list(coefficients = coefficients, fitted = fitted, data = data)
+  
+  class(result) <- c("logitreg")
+  
+  result
+}
