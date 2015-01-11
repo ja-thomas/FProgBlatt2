@@ -24,6 +24,12 @@ expect_equal(get_coefficients_from_glm(data_more_covariables),
 
 test_that("Different optim parameters",{
   expect_equal(get_coefficients_from_glm(data), 
+               logitreg(data$x, data$y, method = "Nelder-Mead")$coefficients, 
+               tolerance = 0.0009)
+  expect_equal(get_coefficients_from_glm(data), 
+               logitreg(data$x, data$y, method = "CG")$coefficients, 
+               tolerance = 0.0009)
+  expect_equal(get_coefficients_from_glm(data), 
                logitreg(data$x, data$y, 
                         control = list(ndeps = 1e-2))$coefficients, 
                tolerance = 0.0009)

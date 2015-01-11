@@ -7,8 +7,8 @@
 #'column should be constant 1 as intercept
 #'@param response numeric vector. Response vector of 1s and 0s, should have the 
 #'same length as the number of rows in design.
-#'@param method character. optimization method, one of "Nelder-Mead", "BFGS", "CG", "L-BFGS-B", "SANN",
-#' "Brent".
+#'@param method character. optimization method, one of "Nelder-Mead", "BFGS", 
+#'"CG", "L-BFGS-B", "SANN", "Brent".
 #'@param ... Further parameters passed to \code{\link[stats]{optim}}.  
 #'@author Janek Thomas, Philipp Roesch
 #'@return A list with estimated coefficients, fitted propabilities and 

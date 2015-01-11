@@ -12,6 +12,6 @@ logit_link(x)
 calculate the logistic link function for one or more observations
 }
 \author{
-Janek Thomas, Philipp Rösch
+Janek Thomas, Philipp Roesch
 }
 

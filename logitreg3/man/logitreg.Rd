@@ -12,8 +12,8 @@ column should be constant 1 as intercept}
 \item{response}{numeric vector. Response vector of 1s and 0s, should have the
 same length as the number of rows in design.}
 
-\item{method}{character. optimization method, one of "Nelder-Mead", "BFGS", "CG", "L-BFGS-B", "SANN",
-"Brent".}
+\item{method}{character. optimization method, one of "Nelder-Mead", "BFGS",
+"CG", "L-BFGS-B", "SANN", "Brent".}
 
 \item{...}{Further parameters passed to \code{\link[stats]{optim}}.}
 }
